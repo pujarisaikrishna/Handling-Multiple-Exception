@@ -1,0 +1,77 @@
+#Handling Multiple Exception
+def observe(idx):
+    try:
+        data = [10,20,30,40,50]
+        print(data[idx])
+    except Exception as e:
+        print(type(e))
+        print(IndexError.mro())
+observe(5)
+
+try:
+    n1 = 10
+    n2 = 0
+    res = n1/n2
+    print(res)
+except ZeroDivisionError as obj:
+    print(obj)
+    print(ZeroDivisionError.mro())
+
+try:
+    n1 = 10
+    n2 = 'hi'
+    res = n1+n2
+    print(res)
+except TypeError as obj:
+    print(obj)
+    print(TypeError.mro())
+
+-------------------------------------------------------------------------------------------------------------------------
+
+#raise exception
+try:
+    n = int(input('enter the number for factorial:'))
+    if n<0:
+        raise ValueError('number cannot be negative')
+except Exception as obj:
+    print(obj)
+
+
+try:
+    n = int(input('please enter any number for finding factorial of a given number:'))
+    if n<0:
+        raise ValueError('number cannot be negative or zero')
+    else:
+        print('hello guys')
+except Exception as obj:
+    print(obj)
+print('------------------------------------------------------------------')
+
+class FiveDivisionError(Exception):
+    pass
+try:
+    a = int(input('1st number:'))
+    b = int(input('2nd number:'))
+    if b==5:
+        raise FiveDivisionError('cannot divide by five')
+    divide = a/b
+    print('Division:',divide)
+except Exception as obj:
+    print(obj)
+print('------------------------------------------------------------------')
+
+
+class Invalid_Password(Exception):
+    pass
+stored_password = "sai@123"
+def login():
+    try:
+        password = input('enter password')
+        if password == stored_password:
+            print("you have successfully login")
+        else:
+            raise Invalid_Password('Invalid Password, Please try again')
+    except Exception as obj:
+        print(obj)
+        login()
+login()
